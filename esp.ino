@@ -2,8 +2,8 @@
 
 #include "api.h"
 
-const char *wifi_ssid       = "Network di Giovanni";
-const char *wifi_password   = "EGsk3FV63JU2Lnk4";
+const char *wifi_ssid       = "test";
+const char *wifi_password   = "password";
 
 const char *api_address     = "nabucodonosor.xyz";
 const int   api_port        = 32500;
@@ -25,12 +25,12 @@ void setup() {
 
   Serial.print("Connected with IP: ");
   Serial.println(WiFi.localIP());
-
 }
 
 void loop() {
   WiFiClient client;
-  server_get_status(client, analyze_address, api_address, api_port);
+  auto status = server_get_status(client, analyze_address, api_address, api_port);
+  print_debug_status(status);
 
   delay(10000);
 }
