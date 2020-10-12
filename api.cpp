@@ -3,6 +3,7 @@
 response_status server_get_status(WiFiClient client, const char *url, const char *api_address, const int api_port) {
   response_status s;
 
+  // Check connection availability
   if (!client.connect(api_address, api_port)) {
     Serial.println("Connection with API failed");
 
@@ -23,6 +24,7 @@ response_status server_get_status(WiFiClient client, const char *url, const char
     delay(10);
   }
 
+  // Response parsing and sanity checks
   String response = client.readString();
   const char split = ',';
 
